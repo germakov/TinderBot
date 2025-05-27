@@ -1,5 +1,6 @@
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, CallbackQueryHandler, CommandHandler
 
+from config import TG_BOT_TOKEN
 from gpt import *
 from util import *
 
@@ -28,7 +29,7 @@ async def hello_button(update, context):
     else:
         await send_text(update, context, "Процесс остановлен.")
 
-app = ApplicationBuilder().token("8031207381:AAE2YUJJEYQPoGiG9bJICktas_cwVKhrThE").build()
+app = ApplicationBuilder().token(TG_BOT_TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, hello))
 app.add_handler(CallbackQueryHandler(hello_button))
